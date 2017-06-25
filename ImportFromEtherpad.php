@@ -144,8 +144,6 @@ call_user_func( function() {
 	// remove hyphens because they make bad wiki titles
 	$GLOBALS['wgImportFromEtherpadSettings']->pathRegexs[] = array('-',' ');
 
-	$dir = __DIR__;
-
 	$GLOBALS['wgExtensionCredits']['specialpage'][] = array(
 		'path' => __FILE__,
 		'name' => 'Import From Etherpad',
@@ -156,10 +154,10 @@ call_user_func( function() {
 		'license-name' => 'GPL 3.0+'
 	);
 
-	$GLOBALS['wgAutoloadClasses']['SpecialImportFromEtherpad'] = $dir . '/SpecialImportFromEtherpad.php';
-	$GLOBALS['wgAutoloadClasses']['ImportFromEtherpadHooks'] = $dir . '/ImportFromEtherpad.hooks.php';
-	$GLOBALS['wgMessagesDirs']['ImportFromEtherpad'] = $dir . '/i18n';
-	$GLOBALS['wgExtensionMessagesFiles']['ImportFromEtherpadAlias'] = $dir . '/ImportFromEtherpad.alias.php';
+	$GLOBALS['wgAutoloadClasses']['SpecialImportFromEtherpad'] = __DIR__ . '/SpecialImportFromEtherpad.php';
+	$GLOBALS['wgAutoloadClasses']['ImportFromEtherpadHooks'] = __DIR__ . '/ImportFromEtherpad.hooks.php';
+	$GLOBALS['wgMessagesDirs']['ImportFromEtherpad'] = __DIR__ . '/i18n';
+	$GLOBALS['wgExtensionMessagesFiles']['ImportFromEtherpadAlias'] = __DIR__ . '/ImportFromEtherpad.alias.php';
 	$GLOBALS['wgSpecialPages']['ImportFromEtherpad'] = 'SpecialImportFromEtherpad';
 
 	// register two javascript files that enable target title suggest
@@ -170,7 +168,7 @@ call_user_func( function() {
 		'messages' => array(),
 		'dependencies' => array(),
 		'localBasePath' => __DIR__,
-		'remoteExtPath' => $dir,
+		'remoteExtPath' => basename( __DIR__ ),
 	);
 
 	$GLOBALS['wgResourceModules']['ext.ImportFromEtherpad.main.init'] = array(
@@ -180,7 +178,7 @@ call_user_func( function() {
 		'messages' => array(),
 		'dependencies' => array('ext.ImportFromEtherpad.main'),
 		'localBasePath' => __DIR__,
-		'remoteExtPath' => $dir,
+		'remoteExtPath' => basename( __DIR__ ),
 	);
 
 	// register hook that will load javascript modules defined above
